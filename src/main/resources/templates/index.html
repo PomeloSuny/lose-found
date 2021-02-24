@@ -1,0 +1,145 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<body>
+<div>
+    <ul class="layui-nav nav lf" id="" th:fragment="common-header">
+        <li class="layui-nav-item  J_menuItem "
+            th:class="${header_item}=='begin'? 'layui-nav-item  J_menuItem layui-this': 'layui-nav-item  J_menuItem'">
+            <a href="/begin">首页</a>
+        </li>
+        <li class="layui-nav-item  J_menuItem "
+            th:class="${header_item}=='goods'? 'layui-nav-item  J_menuItem layui-this': 'layui-nav-item  J_menuItem'">
+            <a href="goods.html">货单管理</a>
+        </li>
+        <!--<li th:class="${header_item}=='member'? 'layui-nav-item layui-this': 'layui-nav-item'">-->
+        <!--<a href="javascript:;">会员认证</a>-->
+        <!--<dl class="layui-nav-child">-->
+        <!--<dd>-->
+        <!--<a href="member_driver.html?">司机认证</a>-->
+        <!--</dd>-->
+        <!--&lt;!&ndash;<dd>-->
+        <!--<a href="member_shipper.html">货主认证</a>-->
+        <!--</dd>&ndash;&gt;-->
+
+        <!--</dl>-->
+        <!--</li>-->
+        <li class="layui-nav-item  J_menuItem "
+            th:class="${header_item}=='yundan'? 'layui-nav-item  J_menuItem layui-this': 'layui-nav-item  J_menuItem'">
+            <a>运单管理</a>
+            <dl class="layui-nav-child">
+                <dd>
+                    <a href="/yundan.html" style="text-align: center">运单列表</a>
+                </dd>
+                <dd>
+                    <a href="/claimOrderConfirmList.html" style="text-align: center">抢单待确认列表</a>
+                </dd>
+            </dl>
+        </li>
+        <li class="layui-nav-item  J_menuItem "
+            th:class="${header_item}=='carManage'? 'layui-nav-item  J_menuItem layui-this': 'layui-nav-item  J_menuItem'">
+            <a href="carManage.html">车辆管理</a>
+        </li>
+        <li class="layui-nav-item" th:class="${header_item}=='trades'? 'layui-nav-item layui-this': 'layui-nav-item'">
+            <!--href="/trades.html"-->
+            <a>交易管理</a>
+            <dl class="layui-nav-child">
+                <dd>
+                    <a href="/trades.html" style="text-align: center">交易记录</a>
+                </dd>
+                <dd>
+                    <a href="/batchPayResult.html" style="text-align: center">批量结算记录</a>
+                </dd>
+            </dl>
+        </li>
+
+        <!--<li class="layui-nav-item J_menuItem "-->
+        <!--th:class="${header_item}=='kaipiao'? 'layui-nav-item  J_menuItem layui-this': 'layui-nav-item  J_menuItem'">-->
+        <!--<a href="kaipiao.html">开票管理</a>-->
+        <!--</li>-->
+
+        <li class="layui-nav-item"
+            th:class="${header_item}=='ticketList'? 'layui-nav-item layui-this': 'layui-nav-item'">
+
+            <a href="ticketList.html">财务管理</a>
+            <dl class="layui-nav-child">
+                <dd>
+                    <a href="ticketList.html" style="text-align: center">开票记录</a>
+                </dd>
+                <dd>
+                    <a href="settlementStatistics.html" style="text-align: center">结算统计</a>
+                </dd>
+                <!--<dd>-->
+                <!--<a  style="text-align: center" href="oilManage.html">油气充值</a>-->
+                <!--</dd>-->
+                <!--<dd>-->
+                <!--<a  href="reconciliation.html" style="text-align: center">往来对账</a>-->
+                <!--</dd>-->
+            </dl>
+
+        </li>
+        <li class="layui-nav-item"
+            th:class="${header_item}=='exportCenter'? 'layui-nav-item layui-this': 'layui-nav-item'">
+            <a href="exportCenter.html">导出中心</a>
+        </li>
+
+        <li class="layui-nav-item" th:class="${header_item}=='systemMessages'? 'layui-nav-item layui-this': 'layui-nav-item'">
+            <a>
+                <i class="layui-icon layui-icon-notice" style="position: relative"></i>
+                <span class="red" id="getUnreadCount" style="background: red;width: 8px;height: 8px;border-radius: 50%; position: absolute;top: 12px;left: 30px;display: none"></span>
+            </a>
+            <dl class="layui-nav-child">
+                <dd style="position: relative" onclick="clearUnreadmMessages(2)">
+                    <a href="javascript: void(0);" style="text-align: center" >系统消息</a>
+                    <span class="red messages"
+                          style="background: red;width: 8px;height: 8px;border-radius: 50%; position: absolute;top: 8px;left: 80%;display: none"></span>
+                </dd>
+                <dd style="position: relative" onclick="clearUnreadmMessages(1)">
+                    <a href="javascript: void(0);" style="text-align: center">系统公告</a>
+                    <span class="red notice"
+                          style="background: red;width: 8px;height: 8px;border-radius: 50%; position: absolute;top: 8px;left: 80%;display: none"></span>
+                </dd>
+            </dl>
+        </li>
+
+    </ul>
+
+    <ul class="layui-nav rt top-user" id="user-common" lay-filter="user">
+
+        <i class="layui-icon" style="font-size:22px;vertical-align: middle;"></i>
+
+        <li class="layui-nav-item" th:fragment="common-header-user">
+            <a href="javascript:;" id="user-name">
+                <span id="conpanyName" style="max-width: 110px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;" th:text="${companyName}"></span>
+                <span th:text="${shiroUserName}"></span>
+            </a>
+            <dl class="layui-nav-child">
+                <dd>
+                    <a style="text-align: center"
+                       th:href="@{'/ownerUserDetail?companyId='+${zxWccyCompanyId}+'&userId='+${shiroUserId}}">账户信息</a>
+                </dd>
+                <dd>
+                    <a class="login" onclick="updatePwd()" style="text-align: center">修改登录密码</a>
+                </dd>
+                <dd>
+                    <a class="login" th:if="${shiroUserTitle == 0}" onclick="updatePayPwd()" style="text-align: center">修改支付密码</a>
+                </dd>
+                <dd>
+                    <a class="" href="/logout" style="text-align: center">点击退出</a>
+                </dd>
+            </dl>
+        </li>
+
+        <span class="layui-nav-bar"></span>
+
+    </ul>
+</div>
+<script>
+    var name = $("#user-name").html().slice(7);
+    $("#user-name").html(name);
+
+    function ownerUserDetail(companyId, userId) {
+        window.location.href = '/ownerUserDetail?companyId=' + companyId + '&userId=' + userId;
+    }
+</script>
+</body>
+</html>
